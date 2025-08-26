@@ -1,22 +1,17 @@
-# Offensive-Security-Labs
-
-# Network-Defense
-
 # 🛡️ Cybersecurity Red Team Labs
 
 ## Overview
 
-This lab is designed to simulate **realistic cyber attacks** on both **endpoints** and **network environments** in order to develop and demonstrate **Blue Team detection, analysis, and response skills**. It provides a hands-on platform to practice identifying, investigating, and mitigating threats using industry-standard tools and frameworks.
-
+This repo is a structured collection of labs, notes, and walkthroughs designed to practice and document offensive security techniques. The goal is to build hands-on skills in penetration testing, ethical hacking, and red team methodologies.
 ---
 
 ## 🎯 Objectives
 
 - Simulate endpoint-based attacks (e.g., privilege escalation, process injection, credential access)
 - Simulate network-based attacks (e.g., port scanning, man-in-the-middle, data exfiltration)
-- Use security tools to detect and respond to threats in real-time
-- Build and tune detection rules, dashboards, and alerts
-- Gain hands-on experience with logs, events, and forensic data
+- Build a personal reference for penetration testing skills
+- Simulate real-world attack scenarios in a controlled environment
+- Prepare for certifications like OSCP, PNPT, CEH, eJPT
 
 ---
 
@@ -24,33 +19,25 @@ This lab is designed to simulate **realistic cyber attacks** on both **endpoints
 
 | Category        | Tools/Technologies                  |
 |----------------|--------------------------------------|
-| Endpoint Security | Sysmon, Wazuh Agent, Windows Event Logs |
-| Network Monitoring | Wireshark, Suricata, tcpdump       |
-| SIEM/Log Analysis | Wazuh |
-| Offensive Simulation | Kali Linux, Metasploit,|
-| Detection Frameworks | MITRE ATT&CK,  |
-| Virtualization | VMware Fusion    |
-
----
-## 📌 Example Attacks Simulated in these labs
-
-| Category | Technique | MITRE ID |
-|---------|-----------|----------|
-| Privilege Escalation | `runas`, `whoami`, `mimikatz.exe` | T1055, T1003 |
-| Reconnaissance | `netstat`, `systeminfo`, `arp -a` | T1087, T1016 |
-| Network Discovery | `nmap`, `arp-scan` | T1046 |
-| Lateral Movement | RDP login attempts, shared folder access | T1021 |
-| Malware Execution | `nc.exe`, obfuscated PowerShell scripts | T1059 |
-| File Integrity | Create/edit/delete sensitive files | N/A |
+| Enumeration | NMAP, netcat, Wireshark, Bloodhound |
+| Exploitation | Metasploit, Impacket, Custom Scripts   |
+| Priviledge Escalation | LinPEAS, WinPeas|
+| Credential Access | Mimikatz, JohntheRipper, Hydra |
+| Web Applcation Attacks | Burp Suite  |
 
 ---
 
-## ✅ Blue Team Focus Areas
+## ✅ Red Team Focus Areas
 
-- **Log Collection & Analysis**: Forward logs to Wazuh and analyze alerts
-- **Detection Engineering**: Write custom rules for suspicious processes and behavior
-- **Alert Tuning**: Reduce false positives, increase detection accuracy
-- **Forensics & Investigation**: Examine Sysmon, Event Logs, PCAPs
-- **Dashboards**: Create visualizations in Kibana for SOC-style monitoring
+This repository simulates the methodology of a red teamer across the attack chain:
+
+- **Initial Access** → Exploiting exposed services, phishing simulation
+- **Reconnaissance** → Enumeration of networks, domains, and services
+- **Exploitation** → Exploiting vulnerabilities to gain a foothold
+- **Privilege Escalation** → Moving from user → admin/system/root
+- **Credential Access** → Dumping & cracking passwords, harvesting tokens
+- **Lateral Movement** → Expanding access to other systems in the network
+- **Persistence** → Ensuring continued access through backdoors & tasks
+- **Defense Evasion** → Avoiding detection by EDR, SIEM, and logging system
 
 ---
