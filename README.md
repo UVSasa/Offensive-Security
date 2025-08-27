@@ -3,6 +3,7 @@
 ## Overview
 
 This repo is a structured collection of labs, notes, and walkthroughs designed to practice and document offensive security techniques. The goal is to build hands-on skills in penetration testing, ethical hacking, and red team methodologies.
+
 ---
 
 ## 🎯 Objectives
