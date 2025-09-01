@@ -12,7 +12,7 @@ My goal is to practice:
   4. Save results for later analysis.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
-**Step 1**: Set Up the Lab
+<h2>Step 1: Set Up the Lab</h2>
 
 1. Machines Needed:
     * Attacker: Kali Linux (your scanning box with Nmap).
@@ -21,9 +21,10 @@ My goal is to practice:
 👉 Real World Parallel: In a corporate LAN, attackers must first identify which machines are alive before choosing targets.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
-**Step 2: Live Host Discovery**
+<h2>Step 2: Live Host Discovery</h2>
 
-1). ARP Scan (local subnet only)
+**1). ARP Scan (local subnet only)**
+
 Our first step is to figure out how attackers figure out which IPs are “alive.” For this we will use an arp scan.
 
 Command:
@@ -34,15 +35,106 @@ Explanation:
 - In the real-world this is the same as plugging into a company LAN and seeing who’s around.
 - -sn option decalres you want to scan without conducting a port scan
 - -PR option indicates you only want an arp scan
+-------------------------------------------------------------------------------------------------------------------------------------------
 
-2). ICMP Echo (Ping Scan)
+**2). ICMP Echo (Ping Scan)**
 
 Command: 
 - sudo nmap -PE -sn 192.168.1.0/24
 
 Explanation
-- Why: Useful outside local subnet, but may be blocked by firewalls.
-- Real-world: Similar to a ping sweep attackers use on external networks.
+- Useful outside local subnet, but may be blocked by firewalls.
+- In the real-world this is similar to a ping sweep attackers use on external networks.
+- Because ICMP echo(Ping)tends to be blocked you can consider ICMP timestamp or ICMP address mask to tell if a system is online.
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+**3). ICMP Timestamp or Address Mask (firewall evasion)**
+
+Commands:
+- command sudo nmap -PP -sn 192.168.1.0/24 (timestamp)
+- command sudo nmap -PM -sn 192.168.1.0/24 (address mask)
+
+Explanation:
+  -  Sometimes these work when regular pings ICMP(echo) are blocked.
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+**4). TCP SYN Ping**
+
+For a tcp syn ping, we can send a packet with the syn flag set to a specific port and wait for a response. An open port should reply with a syn/ack, and a closed port would result in a rst. Privileged users can send TCP SYN packets and don’t need to complete the TCP 3-way handshake even if the port is open. Unprivileged user must complete the handshake
+
+command: 
+  - sudo nmap -PS22,80,443 -sn 192.168.1.0/24
+
+Explanation:
+  - Checks if hosts respond on common ports.
+  - In the real-world attackers may use this to try and ping specific ports if ICMP is blocked.
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+**5). UDP Ping**
+
+Sending a UDP packet to an open port is not expected to lead to any reply. However if we send a UDP packet to a closed UDP port, we expect to get an ICMP port unreachable packet; this indicates that the system is up and available.
+
+command:
+  - sudo nmap -PU53,161 -sn 192.168.1.0/24
+
+Explanation:
+- Useful to find hosts running DNS (53) or SNMP (161).
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+<h2>Step 3: Basic Port Enumeration</h2>
+
+Once I identified which IPs were "alive," I focused on targeting them. In this case, I chose my Windows VM as the "victim machine" and used its IP address. Even though I already knew the IP beforehand, it was still valuable to run the scans and see all the devices on my network. This simulated how an attacker would enumerate the environment, identify active devices, and determine the best target—just as I did with my Windows VM.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+**1). TCP Connect Scan**
+
+Instead of crafting raw packets (like -sS SYN scan), Nmap asks the OS to perform a full TCP three-way handshake with each target port.
+
+Command:
+  - nmap -sT 192.168.1.10
+
+Explanation:
+- Simple scan that works even if you don’t have root.
+- In real-world environments this scan is very noisy and easy for defenders to detect in logs.
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+**2). TCP SYN Scan (stealth)**
+
+It scans the default top 1000 TCP ports on 192.168.1.10 using a stealthy half-open technique to see which ports are open, closed, or filtered.
+
+Command:
+  - sudo nmap -sS 192.168.1.10
+
+Explanation: 
+- Default for privileged users. Doesn’t complete the 3-way handshake.
+- This scan is usually harder to detect in logs, widely used by attackers.
+-------------------------------------------------------------------------------------------------------------------------------------------
+**3. UDP Scan**
+
+Command: 
+  - sudo nmap -sU 192.168.1.10
+
+Explanation:
+- Services like DNS, SNMP, and DHCP run on UDP.
+- Real-world: Painfully slow, but necessary.
+-------------------------------------------------------------------------------------------------------------------------------------------  
+
+**4. Full Port Sweep**
+
+Command:
+  - sudo nmap -sS -p- 192.168.1.10
+
+Explanation:
+- Covers all 65,535 ports.
+- This scan is takes really long and is meticulous, but if an attacker is patient, they’ll find obscure open services.
+
+
+
+
+
+
 
 
 
