@@ -38,6 +38,12 @@ Explanation:
   - In the real-world this is the same as plugging into a company LAN and seeing who’s around.
   - -sn option decalres you want to scan without conducting a port scan
   - -PR option indicates you only want an arp scan
+
+
+![Alt text](/Images/ArpScan.png)
+
+
+
 -------------------------------------------------------------------------------------------------------------------------------------------
 
 <h3>2. ICMP Echo (Ping Scan)</h3>
