@@ -109,7 +109,7 @@ Explanation:
   - In real-world environments this scan is very noisy and easy for defenders to detect in logs.
 
 
-In the image below you'll see the Syn, Syn,Ack, and Ack packets completing the tcp handshake for port 22.
+In the image below you'll see the Syn, Syn/Ack, and Ack packets completing the tcp handshake for port 22.
 
 ![Alt text](/Images/ConnectScan.png)
 
@@ -166,6 +166,16 @@ Explanation:
   - Helps determine whether a firewall is present and filtering traffic. It’s often used after discovering ports to map out firewall rules and packet filtering behavior.
   - sudo is needed because raw packet scanning often requires elevated privileges.
 
+
+This first image below is an Ack scan when my firewall was off, the second shows when the firewall was on.
+
+![Alt text](/Images/AckScanU.png)
+
+
+
+![Alt text](/Images/AckscanF.png)
+
+
 ------------------------------------------------------------------------------------------------------------------------------------------- 
 
 <h3>2. Null, FIN, Xmas Scans</h3>
@@ -180,6 +190,18 @@ Explanation:
   - RST (reset) → port is closed
   - Useful on older TCP/IP stacks that behave differently.
   - Real-world: Sometimes bypasses firewalls/IDS.
+
+
+The first image below is what a null scan looked like in wireshark and the second is a Xmas scan.
+
+
+![Alt text](/Images/NullScan.png)
+
+
+
+
+![Alt text](/Images/XmasScan.png)
+
 
 ------------------------------------------------------------------------------------------------------------------------------------------- 
 <h3>3. Window Scan</h3>
