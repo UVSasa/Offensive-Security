@@ -128,7 +128,7 @@ Explanation:
   - This scan is usually harder to detect in logs, widely used by attackers.
 
 
-![Alt text](/Images/SynScan.png)
+![Alt text](/Images/SyScan.png)
 
     
 -------------------------------------------------------------------------------------------------------------------------------------------
