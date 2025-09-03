@@ -126,6 +126,11 @@ Command:
 Explanation: 
   - Default for privileged users. Doesn’t complete the 3-way handshake.
   - This scan is usually harder to detect in logs, widely used by attackers.
+
+
+![Alt text](/Images/SynScan.png)
+
+    
 -------------------------------------------------------------------------------------------------------------------------------------------
 <h3>3. UDP Scan</h3>
 
