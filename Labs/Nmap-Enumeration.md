@@ -107,6 +107,13 @@ Command:
 Explanation:
   - Simple scan that works even if you don’t have root.
   - In real-world environments this scan is very noisy and easy for defenders to detect in logs.
+
+
+In the image below you'll see the Syn, Syn,Ack, and Ack packets completing the tcp handshake for port 22.
+
+![Alt text](/Images/ConnectScan.png)
+
+
 -------------------------------------------------------------------------------------------------------------------------------------------
 
 <h3>2. TCP SYN Scan (stealth)</h3>
