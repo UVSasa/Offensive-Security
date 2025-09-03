@@ -128,8 +128,10 @@ Explanation:
   - This scan is usually harder to detect in logs, widely used by attackers.
 
 
+As you can see here, my kali issues a syn packet to both port 22 and 80 and when they respond with syn,ack, my kali immediently closes the connection with a rst unlike the connect scan above.
 
 
+![Alt text](/Images/SynScan.png)
     
 -------------------------------------------------------------------------------------------------------------------------------------------
 <h3>3. UDP Scan</h3>
